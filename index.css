@@ -17,3 +17,9 @@ h1 {
   text-align: center;
   margin-top: 20px;
 }
+
+.v span,
+.time span {
+  color: black;
+  font-family: monospace;
+}
