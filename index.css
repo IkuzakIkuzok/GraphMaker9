@@ -1,0 +1,19 @@
+
+/* (c) 2017 Kazuki KOHZUKI */
+
+@font-face {
+	font-family: 'Futura';
+	src: url(./fonts/FuturaExtended.ttf);
+}
+
+* {
+  background-color: #CBD9F0;
+}
+
+h1 {
+  font-family: Futura, sans-serif;
+  font-size: 36px;
+  color: #000128;
+  text-align: center;
+  margin-top: 20px;
+}
