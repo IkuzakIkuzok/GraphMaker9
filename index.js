@@ -8,7 +8,7 @@ const path = require('path');
 var win = null
 
 app.on('ready', function() {
-  win = new BrowserWindow({width: 800, height: 600})
+  win = new BrowserWindow({width: 800, height: 700})
   win.loadURL(`file://${__dirname}/index.html`)
   win.on('closed', () => {
     mainWindow = null
