@@ -64,13 +64,16 @@ function run()
     updateTime();
     updateGraph();
     return running;
+  }, function() {
+    btn.innerHTML = "Run";
+    running = false;
   });
 }
 
 /*
  * https://qiita.com/akyao/items/a718cc78436df68d7e15
  */
-function loopSleep(_loopLimit,_interval, _mainFunc){
+function loopSleep(_loopLimit,_interval, _mainFunc, _callback){
   var loopLimit = _loopLimit;
   var interval = _interval;
   var mainFunc = _mainFunc;
@@ -78,12 +81,14 @@ function loopSleep(_loopLimit,_interval, _mainFunc){
   var loopFunc = function () {
     var result = mainFunc(i);
     if (result === false) {
-      // break機能
+      _callback();
       return;
     }
     i = i + 1;
     if (i < loopLimit) {
       setTimeout(loopFunc, interval);
+    } else {
+      _callback();
     }
   }
   loopFunc();
