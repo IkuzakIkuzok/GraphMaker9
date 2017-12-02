@@ -7,34 +7,46 @@ var x = new Array(LENGTH);
 var v1s = new Array(LENGTH);
 var v2s = new Array(LENGTH);
 var btn = null;
+var ctx = null;
+body = null;
 var running = false;
 
 window.onload = function() {
-  btn = document.getElementById("run");
+  ctx = document.getElementById("canvas").getContext("2d")
+  btn = document.getElementById("run")
+  body = document.getElementById("body")
   for (var i = 0; i < LENGTH; i++) {
-    x[i] = i / 10;
+    x[i] = i / 10
   }
-  updateV1();
-  updateV2();
-  updateTime();
-  makeGraph();
+  updateV1()
+  updateV2()
+  updateTime()
+  makeGraph()
 
-  document.getElementById("v1").addEventListener("click", function() {
-    updateV1();
-    updateGraph();
-  });
+  document.getElementById("v1").addEventListener("click", () => {
+    updateV1()
+    updateGraph()
+  })
 
-  document.getElementById("v2").addEventListener("click", function() {
-    updateV2();
-    updateGraph();
-  });
+  document.getElementById("v2").addEventListener("click", () => {
+    updateV2()
+    updateGraph()
+  })
 
-  document.getElementById("time").addEventListener("click", function() {
-    updateTime();
-    updateGraph();
-  });
+  document.getElementById("time").addEventListener("click", () => {
+    updateTime()
+    updateGraph()
+  })
 
   document.getElementById("run").addEventListener("click", run);
+
+  body.addEventListener("resize", () => {
+    var height = body.clientHeight
+    var width = body.clientWidth
+    ctx.canvas.height = "100px"
+    ctx.canvas.width = "100px"
+    window.myLine.validate()
+  })
 }
 
 function updateV1()
@@ -118,6 +130,7 @@ function makeGraph()
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       title:{
         display:true,
         text: "Simulation of Chromatography"
@@ -146,13 +159,16 @@ function makeGraph()
           scaleLabel: {
             display: true,
             labelString: 'Conc.'
+          },
+          ticks: {
+            beginAtZero: true,
+            max: 1.2
           }
         }]
       }
     }
   };
 
-  var ctx = document.getElementById("canvas").getContext("2d");
   window.myLine = new Chart(ctx, config);
 }
 
